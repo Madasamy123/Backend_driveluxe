@@ -7,6 +7,7 @@ import com.Madasamy.driveluxe.repository.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -33,6 +34,7 @@ public class BookingService {
             String imageUrl = car.getImageUrl();
             if (imageUrl != null) {
                 Booking booking = new Booking(car, customerName, email, phoneNumber, address, imageUrl);
+                booking.setBookingStatus(Booking.BookingStatus.SUBMITTED);
                 bookingRepository.save(booking);
                 System.out.println("Booking saved with image URL: " + imageUrl);
             } else {
@@ -42,6 +44,26 @@ public class BookingService {
             System.out.println("Car not found with ID: " + carId);
         }
     }
+
+    public Booking updateStatus(int id, Booking.BookingStatus status) {
+        Optional<Booking> optionalBooking = bookingRepository.findById(id);
+        if (optionalBooking.isPresent()) {
+            Booking booking = optionalBooking.get();
+            booking.setBookingStatus(status);
+            return bookingRepository.save(booking);
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

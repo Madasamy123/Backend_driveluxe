@@ -1,8 +1,7 @@
 package com.Madasamy.driveluxe.dto;
 
-import java.time.LocalDateTime;
-
 public class BookingDTO {
+    private int id;
     private String customerName;
     private String email;
     private String phoneNumber;
@@ -10,9 +9,13 @@ public class BookingDTO {
     private Integer carId;
     private String bookingDate;
     private String imageUrl;
+    private String bookingStatus;
+
+
 
     // Constructor to initialize all fields
-    public BookingDTO(String customerName, String email, String phoneNumber,String address, Integer carId, String bookingDate, String imageUrl) {
+    public BookingDTO(int id,String customerName, String email, String phoneNumber, String address, Integer carId, String bookingDate, String imageUrl, String bookingStatus) {
+        this.id=id;
         this.customerName = customerName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -20,6 +23,8 @@ public class BookingDTO {
         this.carId = carId;
         this.bookingDate = bookingDate;
         this.imageUrl = imageUrl;
+        this.bookingStatus = bookingStatus;
+
     }
 
 
@@ -28,6 +33,13 @@ public class BookingDTO {
         return customerName;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getAddress() {
         return address;
@@ -54,6 +66,14 @@ public class BookingDTO {
     public String getImageUrl() {
         return imageUrl;
     }
+
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+
+
+
 
 
 }

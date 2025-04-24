@@ -20,6 +20,23 @@ public class Booking {
     private LocalDateTime bookingDate = LocalDateTime.now();
     @Column(nullable = true)
     private String imageUrl;
+
+
+
+
+    public enum BookingStatus {
+
+        SUBMITTED,
+        CONFIRMED,
+        CANCELLED,
+        DELIVERED
+    }
+
+
+    @Enumerated(EnumType.STRING)
+    private BookingStatus bookingStatus = BookingStatus.SUBMITTED;
+
+
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
     @JsonBackReference
@@ -36,6 +53,9 @@ public class Booking {
         this.address=address;
         this.bookingDate = LocalDateTime.now();
         this.imageUrl=imageUrl;
+        this.bookingStatus = BookingStatus.SUBMITTED;
+
+
     }
 
 
@@ -105,4 +125,10 @@ public class Booking {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public BookingStatus getBookingStatus() { return bookingStatus; }
+    public void setBookingStatus(BookingStatus bookingStatus) { this.bookingStatus = bookingStatus; }
+
+
+
 }

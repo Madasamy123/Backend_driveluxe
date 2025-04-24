@@ -16,6 +16,7 @@ public class DriveluxeController {
         private final DriveluxeService driveluxeService;   //  Reference from DriveluxeService class
 
     //  constructor
+
         public DriveluxeController(DriveluxeService driveluxeService) {
             this.driveluxeService = driveluxeService;
         }
@@ -76,7 +77,11 @@ public class DriveluxeController {
     }
 
 
-
+//    // New endpoint to get cars ordered by created date (latest first)
+//    @GetMapping("/latestCars")
+//    public List<Car> getAllCarsLatestFirst() {
+//        return driveluxeService.getAllCarsLatestFirst();
+//    }
 
 
 

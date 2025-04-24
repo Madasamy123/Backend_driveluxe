@@ -60,6 +60,16 @@ public class DriveluxeService {
     }
 
 
+    //
+//    // New method to get all cars ordered by creation date (latest first)
+//    public List<Car> getAllCarsLatestFirst() {
+//        return driveluxeRepository.findAllCarsLatestFirst();
+//    }
+
+
+
+
+
 
 
 

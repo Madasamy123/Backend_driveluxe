@@ -4,6 +4,7 @@ import com.Madasamy.driveluxe.dto.BookingDTO;
 import com.Madasamy.driveluxe.model.Booking;
 import com.Madasamy.driveluxe.model.Car;
 import com.Madasamy.driveluxe.service.BookingService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
@@ -13,6 +14,8 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = "http://127.0.0.1:5502")
 @RequestMapping("/api/bookings")
+
+
 public class BookingController {
 
     private final BookingService bookingService;
@@ -22,23 +25,32 @@ public class BookingController {
     }
 
     @GetMapping
+
     public List<BookingDTO> getAllBookings() {
+
         List<Booking> bookings = bookingService.getAllBookings();
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-mm-yyyy");
+
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return bookings.stream().map(booking -> {
+
             Car car = booking.getCar();
             Integer carId = (car != null) ? car.getCarId() : null;
 
             String formattedDate=booking.getBookingDate().toLocalDate().toString();
 
             return new BookingDTO(
+                    booking.getId(),
                     booking.getCustomerName(),
                     booking.getEmail(),
                     booking.getPhoneNumber(),
                     booking.getAddress(),
                     carId,
                     formattedDate,
-                    booking.getImageUrl()
+                    booking.getImageUrl(),
+                    booking.getBookingStatus() != null ? booking.getBookingStatus().name() : "SUBMITTED"
+
+
+
             );
         }).collect(Collectors.toList());
     }
@@ -54,6 +66,14 @@ public class BookingController {
         );
         return "Booking successful";
     }
+
+    @PutMapping("/{id}/status")
+    public Booking updateBookingStatus(@PathVariable int id, @RequestParam Booking.BookingStatus status) {
+        return bookingService.updateStatus(id, status);
+    }
+
+
+
 
 
 
