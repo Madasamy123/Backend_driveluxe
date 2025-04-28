@@ -13,13 +13,13 @@ import java.util.List;
 public class DriveluxeService {
     private final DriveluxeRepository driveluxeRepository;
 
-
+// constructor
     public DriveluxeService(DriveluxeRepository driveluxeRepository) {
         this.driveluxeRepository = driveluxeRepository;
     }
 
     public Car addCar(Car car) {
-        return driveluxeRepository.save(car);
+        return driveluxeRepository.save(car);    //  car object save in database
     }
 
     public List<Car> getAllCars() {
@@ -50,7 +50,7 @@ public class DriveluxeService {
     }
 
 
-// call custome query
+// search cars custom query
 
 
 

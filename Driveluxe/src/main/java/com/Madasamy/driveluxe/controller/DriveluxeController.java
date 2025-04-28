@@ -22,7 +22,7 @@ public class DriveluxeController {
         }
 
     // Add a New Car
-
+    //  handles the http post request
     @PostMapping
     public Car addCar(@RequestBody Car car) {
         return driveluxeService.addCar(car);

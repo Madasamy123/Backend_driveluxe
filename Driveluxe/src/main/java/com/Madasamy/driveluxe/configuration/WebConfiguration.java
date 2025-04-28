@@ -20,7 +20,7 @@ public class WebConfiguration {
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                           .allowedHeaders("*");
 
-                // .allowCredentials(true); // Only if using cookies or sessions
+
             }
 
 

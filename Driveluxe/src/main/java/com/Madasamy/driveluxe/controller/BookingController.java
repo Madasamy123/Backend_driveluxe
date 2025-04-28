@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
+//  Allows frontend to call backend
 @CrossOrigin(origins = "http://127.0.0.1:5502")
 @RequestMapping("/api/bookings")
 
@@ -67,9 +69,23 @@ public class BookingController {
         return "Booking successful";
     }
 
+//    @PutMapping("/{id}/status")
+//    public Booking updateBookingStatus(@PathVariable int id, @RequestParam Booking.BookingStatus status) {
+//        return bookingService.updateStatus(id, status);
+//    }
+
     @PutMapping("/{id}/status")
-    public Booking updateBookingStatus(@PathVariable int id, @RequestParam Booking.BookingStatus status) {
-        return bookingService.updateStatus(id, status);
+    public Booking updateBookingStatus(
+            @PathVariable int id,
+            @RequestParam Booking.BookingStatus status,
+            @RequestBody(required = false) Map<String, String> requestBody) {
+
+        String reason = null;
+        if (requestBody != null) {
+            reason = requestBody.get("reason");
+        }
+
+        return bookingService.updateStatus(id, status, reason);
     }
 
 

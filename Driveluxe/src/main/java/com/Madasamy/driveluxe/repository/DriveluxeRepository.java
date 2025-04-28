@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.*;
 
 @Repository
-public interface DriveluxeRepository extends JpaRepository<Car,Integer> {
+public interface DriveluxeRepository extends JpaRepository<Car,Integer> {   //  < Entity,primary key type >
 
     // custome search query
 

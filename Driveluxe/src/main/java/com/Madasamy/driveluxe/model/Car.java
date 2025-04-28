@@ -1,21 +1,22 @@
 package com.Madasamy.driveluxe.model;
 
 
-import jakarta.persistence.*;  //  imports JPA annotation like @Entity,@Id,@column..,
+//  imports JPA annotation like @Entity,@Id,@column..,
+import jakarta.persistence.*;
 
-
+// decimal value
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
-@Entity    // Maps to 'cars' table in MySQL
-
-@Table(name = "cars")
+  // Maps to 'cars' table in MySQL
+  @Entity
+  @Table(name = "cars")
 public class Car {
 
 
     @Id            //  primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)      // Auto-incremented ID by database
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    // Auto-incremented ID by database
     private int carId;
 
     //  This column cannot be null value and empty  and character length 100;

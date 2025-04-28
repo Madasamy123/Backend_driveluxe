@@ -57,6 +57,22 @@ public class BookingService {
 
 
 
+    public Booking updateStatus(int id, Booking.BookingStatus status, String reason) {
+        Optional<Booking> optionalBooking = bookingRepository.findById(id);
+        if (optionalBooking.isPresent()) {
+            Booking booking = optionalBooking.get();
+            booking.setBookingStatus(status);
+            if (status == Booking.BookingStatus.CANCELLED && reason != null) {
+                booking.setCancellationReason(reason);
+            }
+            return bookingRepository.save(booking);
+        }
+        return null;
+    }
+
+
+
+
 
 
 

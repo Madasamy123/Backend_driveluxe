@@ -1,6 +1,6 @@
 package com.Madasamy.driveluxe.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;  //
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,15 +12,14 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     private String customerName;
     private String email;
     private String phoneNumber;
     private String address;
     private LocalDateTime bookingDate = LocalDateTime.now();
+
     @Column(nullable = true)
     private String imageUrl;
-
 
 
 
@@ -35,6 +34,11 @@ public class Booking {
 
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus = BookingStatus.SUBMITTED;
+
+    @Column(name = "cancellation_reason")
+    private String cancellationReason;
+
+
 
 
     @ManyToOne
@@ -56,6 +60,7 @@ public class Booking {
         this.bookingStatus = BookingStatus.SUBMITTED;
 
 
+
     }
 
 
@@ -68,6 +73,14 @@ public class Booking {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCancellationReason() {
+        return cancellationReason;
+    }
+
+    public void setCancellationReason(String cancellationReason) {
+        this.cancellationReason = cancellationReason;
     }
 
     public Car getCar() {
