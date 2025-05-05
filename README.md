@@ -12,12 +12,12 @@ Comprehensive list of API endpoints for users, cars and bookings with request/re
 ###  Architecture Diagram
 Visual representation of system layers: frontend (HTML/CSS/JS), backend (Spring Boot REST APIs), and MySQL database.
 
- [View Architecture Diagram][(https://docs.google.com/document/d/1Tlc5iIfp8UvOsF8moh_3_VNghIOGUhnpJ1_wYiZcw7A/edit?usp=sharing)]
+ [View Architecture Diagram][(https://docs.google.com/document/d/1Ve8yiOwZWventIX5x00idJCsl1QTbVUax9SxbmK8y-c/edit?usp=sharing)]
 
 ###  ER Diagram
 Structured entity relationship model showing connections between users, cars and bookings.
 
- [View ER Diagram][(https://docs.google.com/document/d/10KvhYcQSwIdpcLmQYDKVBMhoB6xPcLApwx9345IVYjY/edit?usp=sharing)]
+ [View ER Diagram][(https://docs.google.com/document/d/1nHmvjKYMIOIv4Wov5f3-V2SoXNLvGhEWRoQB6l_8xew/edit?usp=sharing)]
 
 ---
 
