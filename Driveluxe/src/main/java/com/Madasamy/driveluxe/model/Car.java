@@ -2,6 +2,7 @@ package com.Madasamy.driveluxe.model;
 
 
 //  imports JPA annotation like @Entity,@Id,@column..,
+
 import jakarta.persistence.*;
 
 // decimal value
@@ -9,14 +10,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
-  // Maps to 'cars' table in MySQL
-  @Entity
-  @Table(name = "cars")
+// Maps to 'cars' table in MySQL
+@Entity
+@Table(name = "cars")
 public class Car {
 
 
     @Id            //  primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)    // Auto-incremented ID by database
+    @Column(name="car_id")
     private int carId;
 
     //  This column cannot be null value and empty  and character length 100;
@@ -30,7 +32,7 @@ public class Car {
     @Column(nullable = false, length = 100)
     private String variant;
 
-    @Column(name ="fuel_type",nullable = false)
+    @Column(name = "fuel_type", nullable = false)
     private String fuelType;
 
 
@@ -57,11 +59,11 @@ public class Car {
 
 
     //  parameterized constructor
-    public Car(String brand, String model, String variant, int year, BigDecimal price, int stockQuantity, String imageUrl,String fuelType) {
+    public Car(String brand, String model, String variant, int year, BigDecimal price, int stockQuantity, String imageUrl, String fuelType) {
         this.brand = brand;
         this.model = model;
         this.variant = variant;
-        this.fuelType=fuelType;
+        this.fuelType = fuelType;
         this.year = year;
         this.price = price;
         this.stockQuantity = stockQuantity;
@@ -157,7 +159,7 @@ public class Car {
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", variant='" + variant + '\'' +
-                ", fuelType='"+fuelType+'\''+
+                ", fuelType='" + fuelType + '\'' +
                 ", year=" + year +
                 ", price=" + price +
                 ", stockQuantity=" + stockQuantity +

@@ -14,12 +14,12 @@ public class BookingDTO {
 
 
     // Constructor to initialize all fields
-    public BookingDTO(int id,String customerName, String email, String phoneNumber, String address, Integer carId, String bookingDate, String imageUrl, String bookingStatus) {
-        this.id=id;
+    public BookingDTO(int id, String customerName, String email, String phoneNumber, String address, Integer carId, String bookingDate, String imageUrl, String bookingStatus) {
+        this.id = id;
         this.customerName = customerName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.address=address;
+        this.address = address;
         this.carId = carId;
         this.bookingDate = bookingDate;
         this.imageUrl = imageUrl;
@@ -62,7 +62,6 @@ public class BookingDTO {
     }
 
 
-
     public String getImageUrl() {
         return imageUrl;
     }
@@ -70,10 +69,6 @@ public class BookingDTO {
     public String getBookingStatus() {
         return bookingStatus;
     }
-
-
-
-
 
 
 }

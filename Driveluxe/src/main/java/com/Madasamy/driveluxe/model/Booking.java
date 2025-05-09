@@ -1,7 +1,8 @@
 package com.Madasamy.driveluxe.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;  //
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,7 +23,6 @@ public class Booking {
     private String imageUrl;
 
 
-
     public enum BookingStatus {
 
         SUBMITTED,
@@ -33,37 +33,35 @@ public class Booking {
 
 
     @Enumerated(EnumType.STRING)
-    private BookingStatus bookingStatus = BookingStatus.SUBMITTED;
+    private BookingStatus bookingStatus = BookingStatus.SUBMITTED; // default
 
     @Column(name = "cancellation_reason")
     private String cancellationReason;
 
 
-
+    // foreign key
 
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
     @JsonBackReference
     private Car car;
 
-    public Booking() {}
+    public Booking() {
+    }
 
     //  Fixed constructor - sets all fields
-    public Booking(Car car, String customerName, String email, String phoneNumber, String address,String imageUrl) {
+    public Booking(Car car, String customerName, String email, String phoneNumber, String address, String imageUrl) {
         this.car = car;
         this.customerName = customerName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.address=address;
+        this.address = address;
         this.bookingDate = LocalDateTime.now();
-        this.imageUrl=imageUrl;
+        this.imageUrl = imageUrl;
         this.bookingStatus = BookingStatus.SUBMITTED;
 
 
-
     }
-
-
 
 
     // Getters and Setters
@@ -139,9 +137,13 @@ public class Booking {
         this.imageUrl = imageUrl;
     }
 
-    public BookingStatus getBookingStatus() { return bookingStatus; }
-    public void setBookingStatus(BookingStatus bookingStatus) { this.bookingStatus = bookingStatus; }
+    public BookingStatus getBookingStatus() {
+        return bookingStatus;
+    }
 
+    public void setBookingStatus(BookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
 
 
 }

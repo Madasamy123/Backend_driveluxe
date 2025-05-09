@@ -2,6 +2,7 @@ package com.Madasamy.driveluxe.controller;
 
 import com.Madasamy.driveluxe.model.Car;
 import com.Madasamy.driveluxe.service.DriveluxeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +13,14 @@ import java.util.List;
 
 public class DriveluxeController {
 
-
-        private final DriveluxeService driveluxeService;   //  Reference from DriveluxeService class
+//  Declares service layer variable to call business logic
+    private final DriveluxeService driveluxeService;
 
     //  constructor
-
-        public DriveluxeController(DriveluxeService driveluxeService) {
-            this.driveluxeService = driveluxeService;
-        }
+    @Autowired    //  automaticallly inject an object
+    public DriveluxeController(DriveluxeService driveluxeService) {
+        this.driveluxeService = driveluxeService;
+    }
 
     // Add a New Car
     //  handles the http post request
@@ -32,37 +33,33 @@ public class DriveluxeController {
 
     @GetMapping
 
-        public List<Car> getAllCars() {
-            return driveluxeService.getAllCars();
-        }
+    public List<Car> getAllCars() {
+        return driveluxeService.getAllCars();
+    }
 
-        // Get Car by ID
+    // Get Car by ID
 
-        @GetMapping("/{id}")
-        public ResponseEntity<Car> getCarsById(@PathVariable int id) {
-            Car car = driveluxeService.getCarsById(id);
-            return car != null ? ResponseEntity.ok(car) : ResponseEntity.notFound().build();
-        }
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Car> getCarsById(@PathVariable int id) {
+        Car car = driveluxeService.getCarsById(id);
+        return car != null ? ResponseEntity.ok(car) : ResponseEntity.notFound().build();
+    }
 
 
-   // Update Car
-   @PutMapping("/{id}")
-   public ResponseEntity<Car> updateCar(@PathVariable int id, @RequestBody Car car) {
-       Car updatedCar = driveluxeService.updateCar(id, car);
-       return updatedCar != null ? ResponseEntity.ok(updatedCar) : ResponseEntity.notFound().build();
-   }
-
-
+    // Update Car
+    @PutMapping("/{id}")
+    public ResponseEntity<Car> updateCar(@PathVariable int id, @RequestBody Car car) {
+        Car updatedCar = driveluxeService.updateCar(id, car);
+        return updatedCar != null ? ResponseEntity.ok(updatedCar) : ResponseEntity.notFound().build();
+    }
 
 
     // Delete Cars
-       @DeleteMapping("/{id}")
-     public ResponseEntity<String> deleteTodo(@PathVariable int id) {
-           driveluxeService.deleteCar(id);
-          return ResponseEntity.ok("Car deleted successfully!");
-     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTodo(@PathVariable int id) {
+        driveluxeService.deleteCar(id);
+        return ResponseEntity.ok("Car deleted successfully!");
+    }
 
 
     // search
@@ -77,18 +74,7 @@ public class DriveluxeController {
     }
 
 
-//    // New endpoint to get cars ordered by created date (latest first)
-//    @GetMapping("/latestCars")
-//    public List<Car> getAllCarsLatestFirst() {
-//        return driveluxeService.getAllCarsLatestFirst();
-//    }
-
-
-
-
-
-
-    }
+}
 
 
 

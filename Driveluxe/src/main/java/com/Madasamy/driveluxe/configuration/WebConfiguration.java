@@ -18,7 +18,8 @@ public class WebConfiguration {
                                 "http://localhost:5501", // Admin with localhost
                                 "http://localhost:5502")  // Website with localhost
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
-                          .allowedHeaders("*");
+                        .allowedHeaders("*");
+
 
 
             }

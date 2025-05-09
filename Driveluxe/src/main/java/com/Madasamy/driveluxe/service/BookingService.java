@@ -28,7 +28,10 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
-    public void saveBooking(int carId, String customerName, String email, String phoneNumber,String address) {
+
+//  Car Booking
+
+    public void saveBooking(int carId, String customerName, String email, String phoneNumber, String address) {
         Car car = carRepository.findById(carId).orElse(null);
         if (car != null) {
             String imageUrl = car.getImageUrl();
@@ -45,17 +48,21 @@ public class BookingService {
         }
     }
 
-    public Booking updateStatus(int id, Booking.BookingStatus status) {
-        Optional<Booking> optionalBooking = bookingRepository.findById(id);
-        if (optionalBooking.isPresent()) {
-            Booking booking = optionalBooking.get();
-            booking.setBookingStatus(status);
-            return bookingRepository.save(booking);
-        }
-        return null;
-    }
+    //  update booking status
+
+//    public Booking updateStatus(int id, Booking.BookingStatus status) {
+//        Optional<Booking> optionalBooking = bookingRepository.findById(id);
+//        if (optionalBooking.isPresent()) {
+//            Booking booking = optionalBooking.get();
+//            booking.setBookingStatus(status);
+//            return bookingRepository.save(booking);
+//        }
+//        return null;
+//    }
 
 
+
+    // cancellation
 
     public Booking updateStatus(int id, Booking.BookingStatus status, String reason) {
         Optional<Booking> optionalBooking = bookingRepository.findById(id);
@@ -69,18 +76,6 @@ public class BookingService {
         }
         return null;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
