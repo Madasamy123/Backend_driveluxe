@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/cars/**").permitAll()
                 .requestMatchers("/api/bookings/**").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")  // Allow only admins to access admin pages
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-resources/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
         );
 

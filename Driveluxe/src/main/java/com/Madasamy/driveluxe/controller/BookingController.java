@@ -32,6 +32,7 @@ public class BookingController {
     @Autowired
     private UserService userService;
 
+    //  Get All Bookings
     @GetMapping
     public List<BookingDTO> getAllBookings() {
 
@@ -58,34 +59,73 @@ public class BookingController {
         }).collect(Collectors.toList());
     }
 
+    //  Get User-specific Bookings
+    @GetMapping("/user")
+    public List<BookingDTO> getUserBookings(@RequestHeader("Authorization") String token) {
+
+        if (token == null || !token.startsWith("Bearer ")) {
+            throw new RuntimeException("Unauthorized: No token provided");
+        }
+
+        token = token.substring(7); // Remove "Bearer " prefix
+        String userEmail = jwtUtil.extractEmail(token);
+
+        Optional<User> userOptional = userService.findByEmail(userEmail);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            List<Booking> bookings = bookingService.getUserBookings(user);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+            return bookings.stream().map(booking -> {
+                Car car = booking.getCar();
+                Integer carId = (car != null) ? car.getCarId() : null;
+                String formattedDate = booking.getBookingDate().toLocalDate().toString();
+
+                return new BookingDTO(
+                        booking.getId(),
+                        booking.getCustomerName(),
+                        booking.getEmail(),
+                        booking.getPhoneNumber(),
+                        booking.getAddress(),
+                        carId,
+                        formattedDate,
+                        booking.getImageUrl(),
+                        booking.getBookingStatus() != null ? booking.getBookingStatus().name() : "SUBMITTED"
+                );
+            }).collect(Collectors.toList());
+        } else {
+            throw new RuntimeException("User not found");
+        }
+    }
+
+    //  Create Booking
     @PostMapping
     public ResponseEntity<String> createBooking(
             @RequestBody BookingDTO bookingDTO,
             @RequestHeader("Authorization") String token) {
 
-        // 🔐 Token Validation
         if (token == null || !token.startsWith("Bearer ")) {
             return ResponseEntity.status(401).body("Unauthorized: No token provided");
         }
 
         token = token.substring(7); // Remove "Bearer " prefix
 
-        // 🔎 Extract Email from Token
         String userEmail = jwtUtil.extractEmail(token);
 
-        // 🔍 Verify User and Role
         Optional<User> userOptional = userService.findByEmail(userEmail);
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if ("USER".equals(user.getRole())) {
-                // ✅ If user is valid and role is "USER", proceed with booking
                 bookingService.saveBooking(
                         bookingDTO.getCarId(),
                         bookingDTO.getCustomerName(),
                         bookingDTO.getEmail(),
                         bookingDTO.getPhoneNumber(),
-                        bookingDTO.getAddress()
+                        bookingDTO.getAddress(),
+                        user
                 );
                 return ResponseEntity.status(201).body("Booking successful!");
             } else {
@@ -96,12 +136,7 @@ public class BookingController {
         }
     }
 
-
-//    @PutMapping("/{id}/status")
-//    public Booking updateBookingStatus(@PathVariable int id, @RequestParam Booking.BookingStatus status) {
-//        return bookingService.updateStatus(id, status);
-//    }
-
+    //  Update Booking Status
     @PutMapping("/{id}/status")
     public Booking updateBookingStatus(
             @PathVariable int id,
@@ -116,4 +151,3 @@ public class BookingController {
         return bookingService.updateStatus(id, status, reason);
     }
 }
-

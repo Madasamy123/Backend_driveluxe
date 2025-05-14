@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController           //  The class handles HTTP requests  & response json format return
-@RequestMapping("/api/cars")   //  URL for all APIs in this controller for base path
+@RestController
+@RequestMapping("/api/cars")
 
 public class DriveluxeController {
 
@@ -26,6 +26,7 @@ public class DriveluxeController {
     //  handles the http post request
     @PostMapping
     public Car addCar(@RequestBody Car car) {
+
         return driveluxeService.addCar(car);
     }
 
@@ -34,6 +35,7 @@ public class DriveluxeController {
     @GetMapping
 
     public List<Car> getAllCars() {
+
         return driveluxeService.getAllCars();
     }
 

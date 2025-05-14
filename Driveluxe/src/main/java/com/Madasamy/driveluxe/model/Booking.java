@@ -22,36 +22,36 @@ public class Booking {
     @Column(nullable = true)
     private String imageUrl;
 
-
     public enum BookingStatus {
-
         SUBMITTED,
         CONFIRMED,
         CANCELLED,
         DELIVERED
     }
 
-
     @Enumerated(EnumType.STRING)
-    private BookingStatus bookingStatus = BookingStatus.SUBMITTED; // default
+    private BookingStatus bookingStatus = BookingStatus.SUBMITTED;
 
     @Column(name = "cancellation_reason")
     private String cancellationReason;
 
-
-    // foreign key
-
+    // === Foreign Key Mapping ===
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
     @JsonBackReference
     private Car car;
 
-    public Booking() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    private User user;
 
-    //  Fixed constructor - sets all fields
-    public Booking(Car car, String customerName, String email, String phoneNumber, String address, String imageUrl) {
+    // === Constructors ===
+    public Booking() {}
+
+    public Booking(Car car, User user, String customerName, String email, String phoneNumber, String address, String imageUrl) {
         this.car = car;
+        this.user = user;
         this.customerName = customerName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -59,12 +59,9 @@ public class Booking {
         this.bookingDate = LocalDateTime.now();
         this.imageUrl = imageUrl;
         this.bookingStatus = BookingStatus.SUBMITTED;
-
-
     }
 
-
-    // Getters and Setters
+    // === Getters and Setters ===
     public int getId() {
         return id;
     }
@@ -89,6 +86,14 @@ public class Booking {
         this.car = car;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getCustomerName() {
         return customerName;
     }
@@ -101,14 +106,6 @@ public class Booking {
         return email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -119,6 +116,14 @@ public class Booking {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public LocalDateTime getBookingDate() {
@@ -144,6 +149,4 @@ public class Booking {
     public void setBookingStatus(BookingStatus bookingStatus) {
         this.bookingStatus = bookingStatus;
     }
-
-
 }

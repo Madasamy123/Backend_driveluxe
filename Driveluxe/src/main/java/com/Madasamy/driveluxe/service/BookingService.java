@@ -2,8 +2,10 @@ package com.Madasamy.driveluxe.service;
 
 import com.Madasamy.driveluxe.model.Booking;
 import com.Madasamy.driveluxe.model.Car;
+import com.Madasamy.driveluxe.model.User;
 import com.Madasamy.driveluxe.repository.BookingRepository;
-import com.Madasamy.driveluxe.repository.CarRepository;
+import com.Madasamy.driveluxe.repository.DriveluxeRepository;
+import com.Madasamy.driveluxe.repository.DriveluxeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +15,11 @@ import java.util.Optional;
 public class BookingService {
 
     private final BookingRepository bookingRepository;
-    private final CarRepository carRepository;
+    private final DriveluxeRepository driveluxeRepository;
 
-    public BookingService(BookingRepository bookingRepository, CarRepository carRepository) {
+    public BookingService(BookingRepository bookingRepository, DriveluxeRepository driveluxeRepository) {
         this.bookingRepository = bookingRepository;
-        this.carRepository = carRepository;
+        this.driveluxeRepository= driveluxeRepository;
     }
 
     public Booking createBooking(Booking booking) {
@@ -29,14 +31,17 @@ public class BookingService {
     }
 
 
-//  Car Booking
 
-    public void saveBooking(int carId, String customerName, String email, String phoneNumber, String address) {
-        Car car = carRepository.findById(carId).orElse(null);
+
+    // car booking
+
+    public void saveBooking(int carId, String customerName, String email, String phoneNumber, String address, User user) {
+        Car car = driveluxeRepository.findById(carId).orElse(null);
         if (car != null) {
             String imageUrl = car.getImageUrl();
             if (imageUrl != null) {
-                Booking booking = new Booking(car, customerName, email, phoneNumber, address, imageUrl);
+                // 🔴 Add the missing `User` object to the constructor
+                Booking booking = new Booking(car, user, customerName, email, phoneNumber, address, imageUrl);
                 booking.setBookingStatus(Booking.BookingStatus.SUBMITTED);
                 bookingRepository.save(booking);
                 System.out.println("Booking saved with image URL: " + imageUrl);
@@ -47,6 +52,7 @@ public class BookingService {
             System.out.println("Car not found with ID: " + carId);
         }
     }
+
 
     //  update booking status
 
@@ -59,6 +65,14 @@ public class BookingService {
 //        }
 //        return null;
 //    }
+
+
+
+    public List<Booking> getUserBookings(User user) {
+        return bookingRepository.findByUser(user);  // ➡️ Fetch only bookings by the specific user
+    }
+
+
 
 
 
@@ -76,6 +90,10 @@ public class BookingService {
         }
         return null;
     }
+
+
+
+
 
 
 }
