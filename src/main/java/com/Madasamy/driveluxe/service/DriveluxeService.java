@@ -1,8 +1,8 @@
-package com.Madasamy.driveluxe.service;
+package com.madasamy.driveluxe.service;
 
-import com.Madasamy.driveluxe.exception.DriveluxeException;
-import com.Madasamy.driveluxe.model.Car;
-import com.Madasamy.driveluxe.repository.DriveluxeRepository;
+import com.madasamy.driveluxe.starter.exception.DriveluxeException;
+import com.madasamy.driveluxe.model.Car;
+import com.madasamy.driveluxe.repository.DriveluxeRepository;
 
 import org.springframework.stereotype.Service;
 

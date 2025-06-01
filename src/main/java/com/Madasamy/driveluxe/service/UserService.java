@@ -1,7 +1,7 @@
-package com.Madasamy.driveluxe.service;
+package com.madasamy.driveluxe.service;
 
-import com.Madasamy.driveluxe.model.User;
-import com.Madasamy.driveluxe.repository.UserRepository;
+import com.madasamy.driveluxe.model.User;
+import com.madasamy.driveluxe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

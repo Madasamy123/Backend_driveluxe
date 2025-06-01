@@ -1,10 +1,10 @@
-package com.Madasamy.driveluxe.controller;
+package com.Madasamy.driveluxe;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DriveluxeApplicationTest {
+class DriveluxeApplicationTests {
 
 	@Test
 	void contextLoads() {

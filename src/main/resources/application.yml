@@ -1,0 +1,18 @@
+server:
+    port: 8081
+spring:
+    application:
+        name: Driveluxe
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: Inam@123
+        url: jdbc:mysql://localhost:3308/Driveluxe
+        username: mysql-user
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        hibernate:
+            ddl-auto: update
+        open-in-view: false
+springdoc:
+    swagger-ui:
+        path: /swagger-ui.html

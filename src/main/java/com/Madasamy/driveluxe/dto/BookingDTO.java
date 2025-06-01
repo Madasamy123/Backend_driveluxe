@@ -1,4 +1,4 @@
-package com.Madasamy.driveluxe.dto;
+package com.madasamy.driveluxe.dto;
 
 public class BookingDTO {
     private int id;

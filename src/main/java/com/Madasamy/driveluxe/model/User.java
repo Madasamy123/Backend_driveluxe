@@ -1,4 +1,4 @@
-package com.Madasamy.driveluxe.model;
+package com.madasamy.driveluxe.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,14 +13,14 @@ public class User {
     private int id;
     private String useremail;
     private String password;
-    private String role;
+    private String role;  // Add this field for role (admin or user)
 
     public User() {}
 
     public User(String useremail, String hashedPassword, String role) {
         this.useremail = useremail;
         this.password = hashedPassword;
-        this.role = role;
+        this.role = role;  // Initialize role
     }
 
     // Getters and setters

@@ -1,6 +1,6 @@
-package com.Madasamy.driveluxe.repository;
+package com.madasamy.driveluxe.repository;
 
-import com.Madasamy.driveluxe.model.User;
+import com.madasamy.driveluxe.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

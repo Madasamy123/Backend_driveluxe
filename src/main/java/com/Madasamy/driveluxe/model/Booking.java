@@ -1,6 +1,6 @@
-package com.Madasamy.driveluxe.model;
+package com.madasamy.driveluxe.model;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -35,18 +35,18 @@ public class Booking {
     @Column(name = "cancellation_reason")
     private String cancellationReason;
 
-    //  Foreign Key Mapping
+    // === Foreign Key Mapping ===
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
-
+    @JsonBackReference
     private Car car;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-
+    @JsonBackReference
     private User user;
 
-    //  Constructors
+    // === Constructors ===
     public Booking() {}
 
     public Booking(Car car, User user, String customerName, String email, String phoneNumber, String address, String imageUrl) {
@@ -61,7 +61,7 @@ public class Booking {
         this.bookingStatus = BookingStatus.SUBMITTED;
     }
 
-    //  Getters and Setters
+    // === Getters and Setters ===
     public int getId() {
         return id;
     }

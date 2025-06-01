@@ -1,4 +1,4 @@
-package com.Madasamy.driveluxe.exception;
+package com.madasamy.driveluxe.starter.exception;
 
 public class DriveluxeException extends RuntimeException {
     public DriveluxeException(String message) {

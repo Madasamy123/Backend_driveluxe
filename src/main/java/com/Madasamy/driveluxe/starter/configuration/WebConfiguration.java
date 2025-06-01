@@ -1,4 +1,4 @@
-package com.Madasamy.driveluxe.configuration;
+package com.madasamy.driveluxe.starter.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,13 +13,10 @@ public class WebConfiguration {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                                //"http://127.0.0.1:5501",  // Admin Page
+                        .allowedOrigins("http://127.0.0.1:5501",  // Admin Page
                                 "http://127.0.0.1:5502",  // Website Page
-                                //"http://localhost:5501", // Admin with localhost
-                                "http://localhost:5502", // Website with localhost
-                                "http://localhost:3000",  //  react
-                                "http://localhost:5173" )  // vite
+                                "http://localhost:5501", // Admin with localhost
+                                "http://localhost:5502")  // Website with localhost
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*");
 

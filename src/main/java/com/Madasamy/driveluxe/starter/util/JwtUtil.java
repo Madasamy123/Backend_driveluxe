@@ -1,4 +1,4 @@
-package com.Madasamy.driveluxe.Util;
+package com.madasamy.driveluxe.starter.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -10,10 +10,8 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET = "madrasa_best_secret_key_1234567890!";
+    private static final String SECRET = "madasamy_best_secret_key_1234567890!";
     private static final SecretKey KEY = Keys.hmacShaKeyFor(SECRET.getBytes());
-
-    // create Token
 
     public String generateToken(String email) {
         return Jwts.builder()
@@ -23,8 +21,6 @@ public class JwtUtil {
                 .signWith(KEY, SignatureAlgorithm.HS256)
                 .compact();
     }
-
-
 
     public String extractEmail(String token) {
         return Jwts.parserBuilder().setSigningKey(KEY).build()
@@ -38,7 +34,6 @@ public class JwtUtil {
     }
 
     private boolean isTokenExpired(String token) {
-
         return extractExpiration(token).before(new Date());
     }
 

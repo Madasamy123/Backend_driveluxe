@@ -1,11 +1,10 @@
-package com.Madasamy.driveluxe.service;
+package com.madasamy.driveluxe.service;
 
-import com.Madasamy.driveluxe.model.Booking;
-import com.Madasamy.driveluxe.model.Car;
-import com.Madasamy.driveluxe.model.User;
-import com.Madasamy.driveluxe.repository.BookingRepository;
-import com.Madasamy.driveluxe.repository.DriveluxeRepository;
-import com.Madasamy.driveluxe.repository.DriveluxeRepository;
+import com.madasamy.driveluxe.model.Booking;
+import com.madasamy.driveluxe.model.Car;
+import com.madasamy.driveluxe.model.User;
+import com.madasamy.driveluxe.repository.BookingRepository;
+import com.madasamy.driveluxe.repository.DriveluxeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +39,7 @@ public class BookingService {
         if (car != null) {
             String imageUrl = car.getImageUrl();
             if (imageUrl != null) {
-                //  Add the missing `User` object to the constructor
+                // 🔴 Add the missing `User` object to the constructor
                 Booking booking = new Booking(car, user, customerName, email, phoneNumber, address, imageUrl);
                 booking.setBookingStatus(Booking.BookingStatus.SUBMITTED);
                 bookingRepository.save(booking);
@@ -69,7 +68,7 @@ public class BookingService {
 
 
     public List<Booking> getUserBookings(User user) {
-        return bookingRepository.findByUser(user);  //  Fetch only bookings by the specific user
+        return bookingRepository.findByUser(user);  // ➡️ Fetch only bookings by the specific user
     }
 
 

@@ -1,12 +1,12 @@
-package com.Madasamy.driveluxe.controller;
+package com.madasamy.driveluxe.controller;
 
-import com.Madasamy.driveluxe.Util.JwtUtil;
-import com.Madasamy.driveluxe.dto.BookingDTO;
-import com.Madasamy.driveluxe.model.Booking;
-import com.Madasamy.driveluxe.model.Car;
-import com.Madasamy.driveluxe.model.User;
-import com.Madasamy.driveluxe.service.BookingService;
-import com.Madasamy.driveluxe.service.UserService;
+import com.madasamy.driveluxe.starter.util.JwtUtil;
+import com.madasamy.driveluxe.dto.BookingDTO;
+import com.madasamy.driveluxe.model.Booking;
+import com.madasamy.driveluxe.model.Car;
+import com.madasamy.driveluxe.model.User;
+import com.madasamy.driveluxe.service.BookingService;
+import com.madasamy.driveluxe.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

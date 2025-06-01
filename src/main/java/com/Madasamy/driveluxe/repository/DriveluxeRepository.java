@@ -1,6 +1,6 @@
-package com.Madasamy.driveluxe.repository;
+package com.madasamy.driveluxe.repository;
 
-import com.Madasamy.driveluxe.model.Car;
+import com.madasamy.driveluxe.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.*;
 
 @Repository
-public interface DriveluxeRepository extends JpaRepository<Car, Integer> {
+public interface DriveluxeRepository extends JpaRepository<Car, Integer> {   //  < Entity,primary key type >
 
-
+    // custome search query
 
     @Query("SELECT c FROM Car c WHERE " +
             "(c.brand IS NOT NULL AND LOWER(c.brand) LIKE LOWER(CONCAT('%', :keyword, '%'))) OR " +
@@ -21,6 +21,10 @@ public interface DriveluxeRepository extends JpaRepository<Car, Integer> {
 
     Optional<Car> findByModel(String model);
 
+
+//    // New query to get cars ordered by creation date (latest first)
+//    @Query("SELECT c FROM Car c ORDER BY c.createdAt DESC")
+//    List<Car> findAllCarsLatestFirst();
 
 
 }

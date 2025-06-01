@@ -1,15 +1,15 @@
-package com.Madasamy.driveluxe.dto;
+package com.madasamy.driveluxe.dto;
 
 public class RegisterRequest {
-    private String email;
+    private String useremail;
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getUseremail() {
+        return useremail;
     }
 
-    public void setUseremail(String email) {
-        this.email = email;
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
     }
 
     public String getPassword() {

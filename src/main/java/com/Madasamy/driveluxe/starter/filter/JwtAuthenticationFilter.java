@@ -1,7 +1,7 @@
-package com.Madasamy.driveluxe.Filter;
+package com.madasamy.driveluxe.starter.filter;
 
-import com.Madasamy.driveluxe.Util.JwtUtil;
-import com.Madasamy.driveluxe.service.UserService;
+import com.madasamy.driveluxe.starter.util.JwtUtil;
+import com.madasamy.driveluxe.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,8 +37,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             jwt = authHeader.substring(7);
             useremail = jwtUtil.extractEmail(jwt);
         }
-
-
 
         if (useremail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             var userOptional = userService.findByEmail(useremail);

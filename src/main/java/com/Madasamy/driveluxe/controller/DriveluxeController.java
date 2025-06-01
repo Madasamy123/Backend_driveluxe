@@ -1,7 +1,7 @@
-package com.Madasamy.driveluxe.controller;
+package com.madasamy.driveluxe.controller;
 
-import com.Madasamy.driveluxe.model.Car;
-import com.Madasamy.driveluxe.service.DriveluxeService;
+import com.madasamy.driveluxe.model.Car;
+import com.madasamy.driveluxe.service.DriveluxeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,20 +13,14 @@ import java.util.List;
 
 public class DriveluxeController {
 
+//  Declares service layer variable to call business logic
+    private final DriveluxeService driveluxeService;
 
-
-//    private final DriveluxeService driveluxeService;
-//
-//    //  constructor
-//    @Autowired    //  automaticallly inject an object
-//    public DriveluxeController(DriveluxeService driveluxeService) {
-//        this.driveluxeService = driveluxeService;
-//    }
-
-
-    @Autowired
-    private  DriveluxeService driveluxeService;
-
+    //  constructor
+    @Autowired    //  automaticallly inject an object
+    public DriveluxeController(DriveluxeService driveluxeService) {
+        this.driveluxeService = driveluxeService;
+    }
 
     // Add a New Car
     //  handles the http post request

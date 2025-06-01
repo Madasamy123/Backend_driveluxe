@@ -1,6 +1,6 @@
-package com.Madasamy.driveluxe.configuration;
+package com.madasamy.driveluxe.starter.configuration;
 
-import com.Madasamy.driveluxe.Filter.JwtAuthenticationFilter;
+import com.madasamy.driveluxe.starter.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +32,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());
 
-        http.cors(CorsConfigurer::disable);
+        http.cors(CorsConfigurer::disable); // Enable CORS
 
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()

@@ -1,4 +1,7 @@
-package com.Madasamy.driveluxe.model;
+package com.madasamy.driveluxe.model;
+
+
+//  imports JPA annotation like @Entity,@Id,@column..,
 
 import jakarta.persistence.*;
 
@@ -18,8 +21,9 @@ public class Car {
     @Column(name="car_id")
     private int carId;
 
-
+    //  This column cannot be null value and empty  and character length 100;
     @Column(nullable = false, length = 100)
+
     private String brand;
 
     @Column(nullable = false, length = 100)
@@ -46,8 +50,8 @@ public class Car {
     private String imageUrl;
 
     //  cannnot be updated
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDate createdAt = LocalDate.now();
+    @Column(name = "created_at", nullable = false, updatable = false)   //  The column can't be updated once saved.
+    private LocalDate createdAt = LocalDate.now();  // sets the current date and time
 
     //  default Constructors
     public Car() {
@@ -143,6 +147,25 @@ public class Car {
 
     public LocalDate getCreatedAt() {
         return createdAt;
+    }
+
+    //  toString() method
+
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", variant='" + variant + '\'' +
+                ", fuelType='" + fuelType + '\'' +
+                ", year=" + year +
+                ", price=" + price +
+                ", stockQuantity=" + stockQuantity +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 
 
