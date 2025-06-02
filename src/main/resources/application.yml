@@ -5,9 +5,9 @@ spring:
         name: Driveluxe
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        password: Inam@123
-        url: jdbc:mysql://localhost:3308/Driveluxe
-        username: mysql-user
+        password: Samy1!2@
+        url: jdbc:mysql://localhost:3306/Driveluxe
+        username: root
     jpa:
         database-platform: org.hibernate.dialect.MySQL8Dialect
         hibernate:

@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   mysqldb:
-    image: mysql:9.3.0
+    image: mysql:8.4.5
     environment:
       MYSQL_DATABASE: Driveluxe
       MYSQL_USER: mysql-user

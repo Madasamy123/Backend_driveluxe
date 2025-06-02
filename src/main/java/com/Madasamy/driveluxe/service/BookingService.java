@@ -39,7 +39,7 @@ public class BookingService {
         if (car != null) {
             String imageUrl = car.getImageUrl();
             if (imageUrl != null) {
-                // 🔴 Add the missing `User` object to the constructor
+                //  Add the missing `User` object to the constructor
                 Booking booking = new Booking(car, user, customerName, email, phoneNumber, address, imageUrl);
                 booking.setBookingStatus(Booking.BookingStatus.SUBMITTED);
                 bookingRepository.save(booking);
